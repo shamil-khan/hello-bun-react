@@ -9,5 +9,6 @@
     "typescript",
     "typescriptreact"
   ],
+  "prettier.useEditorConfig": false,
   "files.autoSave": "onFocusChange"
 }
