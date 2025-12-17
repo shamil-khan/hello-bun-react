@@ -21,12 +21,13 @@ export default defineConfig([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
-    // rules: {
-    //   'react-refresh/only-export-components': [
-    //     'warn',
-    //     { allowExportNames: ['loader'] },
-    //   ],
-    // },
+    rules: {
+      'react-refresh/only-export-components': 'off',
+      //   'react-refresh/only-export-components': [
+      //     'warn',
+      //     { allowExportNames: ['loader'] },
+      //   ],
+    },
   },
   eslintConfigPrettier,
   eslintPluginPrettierRecommended,
