@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <h1 className='text-red-600'>Hello Tailwind</h1>
+      <h1 className='text-red-600'>Hello ShadCN</h1>
       <div className='card'>
         <button
           onClick={() => setCount((count) => count + 1)}
