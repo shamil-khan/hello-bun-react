@@ -8,8 +8,10 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "lint-fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "lint-add": "eslint . --ext .ts,.tsx,.js,.jsx --fix && prettier . --write && git add .",
     "format": "prettier . --write",
     "format-check": "prettier . --check",
+    "format-add": "prettier . --write && git add .",
     "preview": "vite preview"
   },
   "dependencies": {
