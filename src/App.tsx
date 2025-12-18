@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { ThemeProvider } from '@/components/theme-provider';
+import { ModeToggle } from '@/components/mode-toggle';
+import { Button } from '@/components/ui/button';
 import { LoginForm } from '@/components/login-form';
 import { AppSidebar } from '@/components/app-sidebar';
 import {
@@ -21,8 +24,9 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <h1 className='text-red-600'>Hello ShadCN + ShadCN.UI</h1>
+    <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
+      <ModeToggle />
+      <h1 className='text-2xl font-bold'>Hello ShadCN + ShadCN.UI</h1>
       <SidebarProvider
         style={
           {
@@ -51,11 +55,9 @@ function App() {
           </header>
           <div className='card'>
             <LoginForm />
-            <button
-              onClick={() => setCount((count) => count + 1)}
-              className='px-4 py-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700'>
-              count is {count}
-            </button>
+            <Button onClick={() => setCount((count) => count + 1)}>
+              Count is {count}
+            </Button>
           </div>
 
           <div className='flex flex-1 flex-col gap-4 p-4'>
@@ -68,7 +70,7 @@ function App() {
           </div>
         </SidebarInset>
       </SidebarProvider>
-    </>
+    </ThemeProvider>
   );
 }
 
