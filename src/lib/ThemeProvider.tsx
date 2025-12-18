@@ -6,12 +6,11 @@ import {
   useEffect,
   type ReactNode,
 } from 'react';
-import '@/Themes.css';
 
 export const ThemeColors = [
   // 'light-grey',
   // 'red',
-  //'crimson',
+  // 'crimson',
   // 'orange',
   'amber',
   // 'yellow',
@@ -23,11 +22,11 @@ export const ThemeColors = [
   // 'sky',
   // 'blue',
   'indigo',
-  //'violet',
+  // 'violet',
   // 'purple',
   'fuchsia',
   // 'pink',
-  'rose',
+  // 'rose',
   'slate',
 ] as const;
 
@@ -110,6 +109,8 @@ export function ThemeProvider({
     ThemeColors.forEach((t) => root.classList.remove(`theme-${t}`));
     root.classList.add(`theme-${themeColor}`);
 
+    console.log(`theme-${themeColor}`);
+
     if (isDark) {
       root.classList.add('dark');
     } else {
@@ -117,7 +118,7 @@ export function ThemeProvider({
     }
 
     localStorage.setItem(keyThemeColor, themeColor);
-  }, [themeColor, isDark]);
+  }, [themeColor, themeMode, isDark]);
 
   const value = {
     themeColor,

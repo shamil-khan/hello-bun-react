@@ -1,9 +1,7 @@
-import { useState } from 'react';
-// import { ThemeProvider } from '@/components/theme-provider';
-// import { ModeToggle } from '@/components/mode-toggle';
+import { useTranslation } from 'react-i18next';
 import { ThemeProvider } from '@/lib/ThemeProvider';
 import { ThemeSelector } from '@/lib/ThemeSelector';
-import { Button } from '@/components/ui/button';
+import { LanguageSelector } from '@/lib/LanguageSelector';
 import { LoginForm } from '@/components/login-form';
 import { AppSidebar } from '@/components/app-sidebar';
 import {
@@ -20,15 +18,21 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
+import '@/Themes.css';
 import '@/App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.dir() === 'rtl';
 
   return (
-    <ThemeProvider defaultThemeColor='red' defaultThemeMode='dark'>
-      <ThemeSelector />
-      <h1 className='text-2xl font-bold'>Hello ShadCN + ShadCN.UI</h1>
+    <ThemeProvider>
+      <div
+        className={`fixed top-4 ${isRTL ? 'left-4' : 'right-4'} z-50 flex items-center space-x-2`}>
+        <LanguageSelector />
+        <ThemeSelector />
+      </div>
+      <h1 className='text-2xl font-bold'>{t('welcome')}</h1>
       <SidebarProvider
         style={
           {
@@ -57,9 +61,6 @@ function App() {
           </header>
           <div className='card'>
             <LoginForm />
-            <Button onClick={() => setCount((count) => count + 1)}>
-              Count is {count}
-            </Button>
           </div>
 
           <div className='flex flex-1 flex-col gap-4 p-4'>

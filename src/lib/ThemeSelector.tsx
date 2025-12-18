@@ -1,4 +1,5 @@
 // src/components/ThemeSelector.tsx
+import { useTranslation } from 'react-i18next';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,9 +24,10 @@ const themeColors: { name: string; value: ThemeColor }[] = ThemeColors.map(
 
 export function ThemeSelector() {
   const { themeColor, setThemeColor, themeMode, setThemeMode } = useTheme();
+  const { t } = useTranslation();
 
   return (
-    <div className='fixed top-4 right-4 z-50 flex items-center space-x-2'>
+    <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant='outline' size='icon'>
@@ -34,7 +36,7 @@ export function ThemeSelector() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>Color Theme</DropdownMenuLabel>
+          <DropdownMenuLabel>{t('colorTheme')}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           {themeColors.map((c) => (
             <DropdownMenuItem
@@ -48,7 +50,7 @@ export function ThemeSelector() {
               <div
                 className={`mr-2 h-3 w-3 rounded-full theme-${c.value} bg-primary`}
               />
-              {c.name}
+              {t(c.value)}
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>
@@ -65,7 +67,7 @@ export function ThemeSelector() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>Mode</DropdownMenuLabel>
+          <DropdownMenuLabel>{t('mode')}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => setThemeMode('light')}>
             {themeMode === 'light' ? (
@@ -74,7 +76,7 @@ export function ThemeSelector() {
               <div className='mr-2 h-4 w-4' />
             )}
             <Sun className='mr-2 h-4 w-4' />
-            Light
+            {t('light')}
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setThemeMode('dark')}>
             {themeMode === 'dark' ? (
@@ -83,7 +85,7 @@ export function ThemeSelector() {
               <div className='mr-2 h-4 w-4' />
             )}
             <Moon className='mr-2 h-4 w-4' />
-            Dark
+            {t('dark')}
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setThemeMode('system')}>
             {themeMode === 'system' ? (
@@ -92,10 +94,10 @@ export function ThemeSelector() {
               <div className='mr-2 h-4 w-4' />
             )}
             <Monitor className='mr-2 h-4 w-4' />
-            System
+            {t('system')}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-    </div>
+    </>
   );
 }

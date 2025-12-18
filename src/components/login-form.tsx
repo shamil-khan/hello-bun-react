@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -15,6 +16,8 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
+  const { t } = useTranslation();
+
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card className='overflow-hidden p-0'>
@@ -22,13 +25,13 @@ export function LoginForm({
           <form className='p-6 md:p-8'>
             <FieldGroup>
               <div className='flex flex-col items-center gap-2 text-center'>
-                <h1 className='text-2xl font-bold'>Welcome back</h1>
+                <h1 className='text-2xl font-bold'>{t('welcomeBack')}</h1>
                 <p className='text-muted-foreground text-balance'>
-                  Login to your Acme Inc account
+                  {t('loginToYourAccount')}
                 </p>
               </div>
               <Field>
-                <FieldLabel htmlFor='email'>Email</FieldLabel>
+                <FieldLabel htmlFor='email'>{t('email')}</FieldLabel>
                 <Input
                   id='email'
                   type='email'
@@ -38,20 +41,20 @@ export function LoginForm({
               </Field>
               <Field>
                 <div className='flex items-center'>
-                  <FieldLabel htmlFor='password'>Password</FieldLabel>
+                  <FieldLabel htmlFor='password'>{t('password')}</FieldLabel>
                   <a
                     href='#'
-                    className='ml-auto text-sm underline-offset-2 hover:underline'>
-                    Forgot your password?
+                    className={`ml-auto text-sm underline-offset-2 hover:underline`}>
+                    {t('forgetYourPassword')}
                   </a>
                 </div>
                 <Input id='password' type='password' required />
               </Field>
               <Field>
-                <Button type='submit'>Login</Button>
+                <Button type='submit'>{t('login')}</Button>
               </Field>
               <FieldSeparator className='*:data-[slot=field-separator-content]:bg-card'>
-                Or continue with
+                {t('orContinueWith')}
               </FieldSeparator>
               <Field className='grid grid-cols-3 gap-4'>
                 <Button variant='outline' type='button'>
@@ -83,7 +86,7 @@ export function LoginForm({
                 </Button>
               </Field>
               <FieldDescription className='text-center'>
-                Don&apos;t have an account? <a href='#'>Sign up</a>
+                {t('dontHaveAnAccount')} <a href='#'>{t('signUp')}</a>
               </FieldDescription>
             </FieldGroup>
           </form>
@@ -97,8 +100,9 @@ export function LoginForm({
         </CardContent>
       </Card>
       <FieldDescription className='px-6 text-center'>
-        By clicking continue, you agree to our <a href='#'>Terms of Service</a>{' '}
-        and <a href='#'>Privacy Policy</a>.
+        {t('byClickingLoginYouAgreeToOur')}&nbsp;
+        <a href='#'>{t('termsOfService')}</a>&nbsp;
+        {t('and')} <a href='#'>{t('privacyPolicy')}</a>.
       </FieldDescription>
     </div>
   );

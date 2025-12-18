@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArchiveX, Command, File, Inbox, Send, Trash2 } from 'lucide-react';
 
 import { NavUser } from '@/components/nav-user';
@@ -149,9 +150,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [activeItem, setActiveItem] = React.useState(data.navMain[0]);
   const [mails, setMails] = React.useState(data.mails);
   const { setOpen } = useSidebar();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.dir() === 'rtl';
 
   return (
     <Sidebar
+      side={isRTL ? 'right' : 'left'}
       collapsible='icon'
       className='overflow-hidden *:data-[sidebar=sidebar]:flex-row'
       {...props}>
@@ -225,7 +229,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               {activeItem?.title}
             </div>
             <Label className='flex items-center gap-2 text-sm'>
-              <span>Unreads</span>
+              <span>{t('unreads')}</span>
               <Switch className='shadow-none' />
             </Label>
           </div>
