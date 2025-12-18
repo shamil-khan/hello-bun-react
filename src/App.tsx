@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { ThemeProvider } from '@/components/theme-provider';
-import { ModeToggle } from '@/components/mode-toggle';
+// import { ThemeProvider } from '@/components/theme-provider';
+// import { ModeToggle } from '@/components/mode-toggle';
+import { ThemeProvider } from '@/lib/ThemeProvider';
+import { ThemeSelector } from '@/lib/ThemeSelector';
 import { Button } from '@/components/ui/button';
 import { LoginForm } from '@/components/login-form';
 import { AppSidebar } from '@/components/app-sidebar';
@@ -18,14 +20,14 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
-import './App.css';
+import '@/App.css';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-      <ModeToggle />
+    <ThemeProvider defaultThemeColor='red' defaultThemeMode='dark'>
+      <ThemeSelector />
       <h1 className='text-2xl font-bold'>Hello ShadCN + ShadCN.UI</h1>
       <SidebarProvider
         style={
